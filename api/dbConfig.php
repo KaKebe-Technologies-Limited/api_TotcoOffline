@@ -3,7 +3,7 @@
 $HOST = "localhost";
 $USER = "root";
 $PASSWORD = "";
-$DB_NAME = "campusgf_totcodb";
+$DB_NAME = "db_totco";
 
 // Create connection
 $conn = new mysqli($HOST, $USER, $PASSWORD, $DB_NAME);
