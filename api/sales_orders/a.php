@@ -4,16 +4,15 @@ include '../dbConfig.php';
 include '../sanitizer.php';
 
 $response['success'] = 0;
-// empty();
+file_get_contents("php://input")
 
-$jsonData = json_decode(file_get_contents("php://input"));
+if (isset($_REQUEST['raw_data'])  && $_REQUEST['raw_data'] !== "") {
+    $jsonData = $_REQUEST['raw_data'];
+    $PHPobj = json_decode($jsonData);
 
-if ( !empty($jsonData->username)  && !empty($jsonData->order_data)) {
-    // $PHPobj = json_decode($jsonData);
+    if ($userName = $PHPobj->username) {
 
-    if ($userName = $jsonData->username) {
-
-        if ($orders = $jsonData->order_data) {
+        if ($orders = $PHPobj->order_data) {
             //handle cleaning here
             clean_input($userName);
             $response['user'] = $userName;
