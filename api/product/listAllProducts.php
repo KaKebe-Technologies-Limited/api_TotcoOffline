@@ -4,7 +4,7 @@ include '../dbConfig.php';
 
 $response['success'] = 0;
 
-$sql = "SELECT * FROM tbl_product";
+$sql = "SELECT * FROM tbl_product WHERE isDeleted = '0'";
 
 if ($result = $conn->query($sql)) {
     if ($result->num_rows > 0) {

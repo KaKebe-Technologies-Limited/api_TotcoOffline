@@ -10,7 +10,7 @@ $response['success'] = 0;
 if (isset($_REQUEST['id'])  && $_REQUEST['id'] !== "") {
     $id = clean_input($_REQUEST['id']);
 
-    $sql = "SELECT * FROM  tbl_product WHERE product_id = '$id' LIMIT 1";
+    $sql = "SELECT * FROM  tbl_product WHERE product_id = '$id' AND isDeleted = '0' LIMIT 1";
    
     if ($result = $conn->query($sql)) {
     
