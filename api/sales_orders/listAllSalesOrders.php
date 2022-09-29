@@ -6,7 +6,6 @@ include '../sanitizer.php';
 $response['success'] = 0;
 
 $sql = "SELECT op.order_vs_pdt_id, op.sales_order_id, op.product_id, op.quantity, p.pdt_name FROM tbl_order_vs_product op JOIN tbl_sales_order o ON op.sales_order_id = o.sales_order_id JOIN tbl_product p ON op.product_id = p.product_id ORDER BY op.order_vs_pdt_id DESC";
-// $sql = "SELECT * FROM tbl_order_vs_product op JOIN tbl_sales_order o ON op.sales_order_id = o.sales_order_id JOIN tbl_product p ON op.product_id = p.product_id ORDER BY op.tbl_id DESC";
 
 if ($result = $conn->query($sql)) {
 

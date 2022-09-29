@@ -17,15 +17,25 @@ if (isset($_REQUEST['product_name'])  && isset($_REQUEST['unit_price'])  && $_RE
         clean_input($unit_price);
         clean_input($createdBy);
         clean_input($units);
+
+        //check if product_name already exists
+        $sql1 = "SELECT pdt_name FROM tbl_product WHERE pdt_name = '$product_name' LIMIT 1";
+        $result = $conn->query($sql1);
     
-        $sql = "INSERT INTO tbl_product (pdt_name, unit_price, pdt_units, createdBy) VALUES ('$product_name', '$unit_price', '$units', '$createdBy')";
-    
-        if ($conn->query($sql)) {
-            $response['success'] = 1;
-            $response['message'] = "Product created successfully";
+        if ($result->num_rows > 0) {
+            //at this stage, we got a result from db, meaning: product_name already exists!
+            $response['message'] = "Product Name already exists!";
         } else {
-            $response['message'] = "Error creating Product: " . $conn->error;
+            $sql = "INSERT INTO tbl_product (pdt_name, unit_price, pdt_units, createdBy) VALUES ('$product_name', '$unit_price', '$units', '$createdBy')";
+        
+            if ($conn->query($sql)) {
+                $response['success'] = 1;
+                $response['message'] = "Product created successfully";
+            } else {
+                $response['message'] = "Error creating Product: " . $conn->error;
+            }
         }
+    
         
     } else {
         $response['message'] = "Please Login and try again.";

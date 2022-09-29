@@ -9,7 +9,6 @@ $response['success'] = 0;
 $jsonData = json_decode(file_get_contents("php://input"));
 
 if ( !empty($jsonData->username)  && !empty($jsonData->order_data)) {
-    // $PHPobj = json_decode($jsonData);
 
     if ($userName = $jsonData->username) {
 
